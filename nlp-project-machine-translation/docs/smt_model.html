@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module smt_model</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">smt_model</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/a/oberon-home1/h25/tame0804/lis050/lab4/src/smt_model.py">/a/oberon-home1/h25/tame0804/lis050/lab4/src/smt_model.py</a></td></tr></table>
+    <p><span class="code">smt_model.py<br>
+---------------<br>
+A&nbsp;faster,&nbsp;optimized&nbsp;Statistical&nbsp;Machine&nbsp;Translation&nbsp;(SMT)&nbsp;system&nbsp;for<br>
+English→Swedish&nbsp;using:<br>
+&nbsp;<br>
+•&nbsp;IBM&nbsp;Model&nbsp;1&nbsp;word&nbsp;alignment<br>
+•&nbsp;Pruned&nbsp;Swedish&nbsp;vocabulary<br>
+•&nbsp;Trigram&nbsp;LM&nbsp;with&nbsp;Laplace&nbsp;smoothing<br>
+•&nbsp;Greedy&nbsp;decoder&nbsp;+&nbsp;LM-based&nbsp;swap&nbsp;refinement<br>
+•&nbsp;Lightweight&nbsp;BLEU&nbsp;scorer<br>
+&nbsp;<br>
+This&nbsp;version&nbsp;is&nbsp;optimized&nbsp;for&nbsp;small&nbsp;data&nbsp;(5000&nbsp;lines).<br>
+&nbsp;<br>
+Time/Space&nbsp;Complexity&nbsp;Notes:<br>
+•&nbsp;IBM&nbsp;Model&nbsp;1&nbsp;Training:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Time:&nbsp;O(N&nbsp;*&nbsp;I&nbsp;*&nbsp;S&nbsp;*&nbsp;T)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Space:&nbsp;O(V_en&nbsp;*&nbsp;V_sv)<br>
+•&nbsp;Language&nbsp;Model:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Time:&nbsp;O(total_tokens)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Space:&nbsp;O(trigrams)<br>
+•&nbsp;Decoding:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Time:&nbsp;O(L&nbsp;*&nbsp;V_pruned)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Space:&nbsp;O(L)<br>
+V_pruned&nbsp;is&nbsp;used&nbsp;to&nbsp;drastically&nbsp;speed&nbsp;up&nbsp;decoding.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="math.html">math</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="smt_model.html#TrigramLM">TrigramLM</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="TrigramLM">class <strong>TrigramLM</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">Trigram&nbsp;language&nbsp;model&nbsp;with&nbsp;Laplace&nbsp;smoothing.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="TrigramLM-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="TrigramLM-prob"><strong>prob</strong></a>(self, w1, w2, w3)</dt></dl>
+
+<dl><dt><a name="TrigramLM-train"><strong>train</strong></a>(self, sentences)</dt><dd><span class="code">Train&nbsp;LM.<br>
+&nbsp;<br>
+Time:&nbsp;O(total_tokens)</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-build_pruned_vocab"><strong>build_pruned_vocab</strong></a>(t_table, min_align=2)</dt><dd><span class="code">Prune&nbsp;Swedish&nbsp;vocabulary&nbsp;by&nbsp;removing&nbsp;words&nbsp;with&nbsp;too&nbsp;few&nbsp;alignment&nbsp;links.<br>
+&nbsp;<br>
+This&nbsp;drastically&nbsp;speeds&nbsp;up&nbsp;decoding.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list[str]:&nbsp;pruned&nbsp;Swedish&nbsp;vocabulary</span></dd></dl>
+ <dl><dt><a name="-compute_bleu"><strong>compute_bleu</strong></a>(candidate, reference, max_n=4)</dt><dd><span class="code">Lightweight&nbsp;BLEU.<br>
+&nbsp;<br>
+Time:&nbsp;O(n&nbsp;*&nbsp;L)</span></dd></dl>
+ <dl><dt><a name="-em_training"><strong>em_training</strong></a>(t, en_sentences, sv_sentences, iterations=5)</dt><dd><span class="code">Perform&nbsp;EM&nbsp;training&nbsp;for&nbsp;IBM&nbsp;Model&nbsp;1.<br>
+&nbsp;<br>
+Time:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;O(iter&nbsp;*&nbsp;N&nbsp;*&nbsp;S&nbsp;*&nbsp;T)</span></dd></dl>
+ <dl><dt><a name="-greedy_decode"><strong>greedy_decode</strong></a>(sentence_en, t_table, lm, sv_vocab)</dt><dd><span class="code">Greedy&nbsp;decoding&nbsp;with&nbsp;pruned&nbsp;vocabulary.<br>
+&nbsp;<br>
+Time:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;O(L&nbsp;*&nbsp;V_pruned)</span></dd></dl>
+ <dl><dt><a name="-initialize_translation_probs"><strong>initialize_translation_probs</strong></a>()</dt><dd><span class="code">Create&nbsp;a&nbsp;translation&nbsp;table&nbsp;t(sv|en)&nbsp;with&nbsp;uniform&nbsp;initialization.<br>
+&nbsp;<br>
+Space:&nbsp;O(V_en&nbsp;*&nbsp;V_sv)</span></dd></dl>
+ <dl><dt><a name="-load_parallel_data"><strong>load_parallel_data</strong></a>(en_file, sv_file, max_lines=None)</dt><dd><span class="code">Load&nbsp;tokenized&nbsp;English–Swedish&nbsp;parallel&nbsp;data.<br>
+&nbsp;<br>
+Time&nbsp;Complexity:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;O(N&nbsp;*&nbsp;L)<br>
+Space&nbsp;Complexity:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;O(N&nbsp;*&nbsp;L)</span></dd></dl>
+ <dl><dt><a name="-ngram_counts"><strong>ngram_counts</strong></a>(tokens, n)</dt></dl>
+ <dl><dt><a name="-train_smt"><strong>train_smt</strong></a>(train_en, train_sv, subset=5000, em_iters=5)</dt><dd><span class="code">Train&nbsp;SMT&nbsp;pipeline.</span></dd></dl>
+ <dl><dt><a name="-translate_file"><strong>translate_file</strong></a>(in_file, out_file, t_table, lm, sv_vocab)</dt></dl>
+</td></tr></table>
+</body></html>

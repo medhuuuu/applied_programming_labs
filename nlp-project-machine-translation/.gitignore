@@ -1,0 +1,21 @@
+# Large data files
+data/Europarl.en-sv.en
+data/Europarl.en-sv.sv
+data/Europarl.en-sv.xml
+data/train.en
+data/train.sv
+data/train_10000.en
+data/train_10000.sv
+data/train_small.en
+data/train_small.sv
+en-sv.txt.zip
+lab4_submission.zip
+
+# Model checkpoints
+models/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pth
+*.pt
