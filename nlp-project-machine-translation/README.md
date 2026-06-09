@@ -66,17 +66,18 @@ Built with PyTorch:
 ---
 
 ## Project Structure
-nlp-project/
-├── src/                  # Source code
-├── eval/                 # Evaluation scripts
-├── docs/                 # Pydoc HTML documentation
-│   ├── nmt_model.html
-│   └── smt_model.html
-├── data/
-│   ├── test.en           # English test sentences
-│   ├── test.sv           # Swedish test sentences
-│   └── wmt24pp_test.jsonl
-└── extract_wmt.py        # WMT data extraction script
+
+    nlp-project/
+    ├── src/                    # Source code
+    ├── eval/                   # Evaluation scripts
+    ├── docs/                   # Pydoc HTML documentation
+    │   ├── nmt_model.html
+    │   └── smt_model.html
+    ├── data/
+    │   ├── test.en             # English test sentences
+    │   ├── test.sv             # Swedish test sentences
+    │   └── wmt24pp_test.jsonl
+    └── extract_wmt.py          # WMT data extraction script
 
 ---
 
