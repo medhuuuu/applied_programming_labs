@@ -1,0 +1,11 @@
+{"embeddingSpacesPaths": [
+      "/a/oberon-home1/h25/tame0804/lis050/lab2/my_vectors/en.vec.gz",
+      "/a/oberon-home1/h25/tame0804/lis050/lab2/my_vectors/sv.vec.gz",
+      "/a/oberon-home1/h25/tame0804/lis050/lab2/my_vectors/de.vec.gz",
+      "/a/oberon-home1/h25/tame0804/lis050/lab2/my_vectors/es.vec.gz"],
+ "textsToSearchIn":
+ [{"language" : "en",
+   "textPath" : "/home/dsv/mariask/courses/lis050/lab2/inaugural/inaugural_speeches.txt.gz"},
+  {"language" : "en",
+   "textPath" : "/home/dsv/mariask/courses/lis050/lab1/english-train.txt.gz"}]}
+

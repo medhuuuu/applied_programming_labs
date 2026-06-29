@@ -1,0 +1,9 @@
+# Large vector files
+*.gz
+*.vec
+my_vectors/
+
+# Python cache
+__pycache__/
+*.pyc
+.mypy_cache/
