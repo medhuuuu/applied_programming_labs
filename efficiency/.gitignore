@@ -1,0 +1,21 @@
+# Virtual environments
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+.mypy_cache/
+
+# Large data files
+*.gz
+chinese*.txt
+english-train*.txt
+english-test*.txt
+
+# Output files
+scores.txt
+segmented.txt
+output.txt
+ape-output*.txt
+chinese-output*.txt
